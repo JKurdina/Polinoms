@@ -140,6 +140,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Monoms.cpp" />
+    <ClCompile Include="Polinoms.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Monoms.h" />
+    <ClInclude Include="Polinoms.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
