@@ -20,6 +20,8 @@ public:
   ~Polinom();
   Polinom& operator=(const Polinom& p);
   Polinom operator+(const Polinom& p);
+  Polinom operator-(const Polinom& p);
+  Polinom operator*(const Polinom& p);
   void addLast(Monom monom);
   void add(Monom monom);
   void clean();

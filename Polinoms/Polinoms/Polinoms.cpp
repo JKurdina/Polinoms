@@ -15,7 +15,7 @@ Polinom::Polinom(const Polinom& p) {
 
   Link* tmp = p.start->next;
   while (tmp != p.start) {
-    addLast(tmp->monom);
+    this->addLast(tmp->monom);
     tmp = tmp->next;
   }
 }
@@ -63,7 +63,8 @@ void Polinom::addLast(Monom monom) {
 void Polinom::add(Monom monom) {
   Link* tmp = start;
   while (tmp->next != start) {
-    if (tmp->next->monom.s > monom.s) {
+    int new_s = tmp->next->monom.s - tmp->next->monom.s_minus;
+    if (new_s > monom.s - monom.s_minus) {
       Link* b = new Link(monom, tmp->next);
       tmp->next = b;
       return;
@@ -76,7 +77,7 @@ void Polinom::add(Monom monom) {
   end = c;
 }
 
-void Polinom:: clean() {
+void Polinom::clean() {
   Link* tmp;// = start;
   while (start->next != start) {
     tmp = start->next;
@@ -85,7 +86,7 @@ void Polinom:: clean() {
   }
 }
 
-double Polinom:: calculate(int x, int y, int z) {
+double Polinom::calculate(int x, int y, int z) {
   Link* tmp = start->next;
   double result = 0;
   while (tmp != start) {
@@ -150,12 +151,12 @@ istream& operator>>(istream& in, Polinom& p) {
   return in;
 }
 
-Polinom Polinom::operator+(const Polinom& p) {
+Polinom Polinom::operator+(const Polinom& pl) {
   Polinom resultPolinom;
   Link* p_left = start->next;
-  Link* p_right = p.start->next;
+  Link* p_right = pl.start->next;
 
-  while ((p_left != start) || (p_right != p.start)) {
+  while ((p_left != start) && (p_right != pl.start)) {
     int new_s_left = p_left->monom.s - p_left->monom.s_minus;
     int new_s_right = p_right->monom.s - p_right->monom.s_minus;
 
@@ -169,12 +170,125 @@ Polinom Polinom::operator+(const Polinom& p) {
     }
     else {
       double new_coef = p_left->monom.coef + p_right->monom.coef;
-      Monom new_monom(new_coef, p_left->monom.getX(), p_left->monom.getX(), p_left->monom.getX());
+      Monom new_monom;
+      if (p_left->monom.getX() > 0) new_monom.s += p_left->monom.getX();
+      else new_monom.s_minus += p_left->monom.getX() * (-1);
+
+      if (p_left->monom.getY() > 0) new_monom.s += p_left->monom.getY() * p;
+      else new_monom.s_minus += p_left->monom.getY() * p * (-1);
+
+      if (p_left->monom.getZ() > 0) new_monom.s += p_left->monom.getZ() * p * p;
+      else new_monom.s_minus += p_left->monom.getZ() * p * p * (-1);
+
+      new_monom.coef = new_coef;
       resultPolinom.addLast(new_monom);
       p_right = p_right->next;
       p_left = p_left->next;
     }
   }
 
+  if (p_left == start) {
+    while (p_right != pl.start) {
+      resultPolinom.addLast(p_right->monom);
+      p_right = p_right->next;
+    }
+  }
+
+  if (p_right == pl.start) {
+    while (p_left != start) {
+      resultPolinom.addLast(p_left->monom);
+      p_left = p_left->next;
+    }
+  }
+
+  return resultPolinom;
+}
+
+Polinom Polinom::operator-(const Polinom& pl) {
+  Polinom resultPolinom;
+  Link* p_left = start->next;
+  Link* p_right = pl.start->next;
+
+  while ((p_left != start) && (p_right != pl.start)) {
+    int new_s_left = p_left->monom.s - p_left->monom.s_minus;
+    int new_s_right = p_right->monom.s - p_right->monom.s_minus;
+
+    if (new_s_left > new_s_right) {
+      p_right->monom.coef = p_right->monom.coef * (-1);
+      resultPolinom.addLast(p_right->monom);
+      p_right = p_right->next;
+    }
+    if (new_s_left < new_s_right) {
+      resultPolinom.addLast(p_left->monom);
+      p_left = p_left->next;
+    }
+    else {
+      double new_coef = p_left->monom.coef - p_right->monom.coef;
+      Monom new_monom;
+      if (p_left->monom.getX() > 0) new_monom.s += p_left->monom.getX();
+      else new_monom.s_minus += p_left->monom.getX() * (-1);
+
+      if (p_left->monom.getY() > 0) new_monom.s += p_left->monom.getY() * p;
+      else new_monom.s_minus += p_left->monom.getY() * p * (-1);
+
+      if (p_left->monom.getZ() > 0) new_monom.s += p_left->monom.getZ() * p * p;
+      else new_monom.s_minus += p_left->monom.getZ() * p * p * (-1);
+
+      new_monom.coef = new_coef;
+      resultPolinom.addLast(new_monom);
+      p_right = p_right->next;
+      p_left = p_left->next;
+    }
+  }
+
+  if (p_left == start) {
+    while (p_right != pl.start) {
+      p_right->monom.coef = p_right->monom.coef * (-1);
+      resultPolinom.addLast(p_right->monom);
+      p_right = p_right->next;
+    }
+  }
+
+  if (p_right == pl.start) {
+    while (p_left != start) {
+      resultPolinom.addLast(p_left->monom);
+      p_left = p_left->next;
+    }
+  }
+
+  return resultPolinom;
+}
+
+Polinom Polinom::operator*(const Polinom& pl) {
+  Polinom resultPolinom;
+  Link* p_left = start->next;
+  Link* p_right = pl.start->next;
+
+  while (p_left != start) {
+
+    Link* tmp = p_right;
+    while (tmp != pl.start) {
+      double new_coef = p_left->monom.coef * tmp->monom.coef;
+      int new_x = p_left->monom.getX() + tmp->monom.getX();
+      int new_y = p_left->monom.getY() + tmp->monom.getY();
+      int new_z = p_left->monom.getZ() + tmp->monom.getZ();
+
+      Monom new_monom;
+      if (new_x > 0) new_monom.s += new_x;
+      else new_monom.s_minus += new_x * (-1);
+
+      if (new_y > 0) new_monom.s += new_y * p;
+      else new_monom.s_minus += new_y * p * (-1);
+
+      if (new_z > 0) new_monom.s += new_z * p * p;
+      else new_monom.s_minus += new_z * p * p * (-1);
+
+      new_monom.coef = new_coef;
+      resultPolinom.addLast(new_monom);
+      tmp = tmp->next;
+    }
+    p_left = p_left->next;
+
+  }
   return resultPolinom;
 }
