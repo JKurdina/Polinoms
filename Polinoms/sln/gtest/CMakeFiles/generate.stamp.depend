@@ -1,0 +1,10 @@
+# CMake generation dependency list for this directory.
+C:/Users/kurdi/Desktop/Polinoms/Polinoms/gtest/CMakeLists.txt
+D:/CMake/share/cmake-3.24/Modules/CheckCSourceCompiles.cmake
+D:/CMake/share/cmake-3.24/Modules/CheckFunctionExists.c
+D:/CMake/share/cmake-3.24/Modules/CheckIncludeFile.cmake
+D:/CMake/share/cmake-3.24/Modules/CheckLibraryExists.cmake
+D:/CMake/share/cmake-3.24/Modules/FindPackageHandleStandardArgs.cmake
+D:/CMake/share/cmake-3.24/Modules/FindPackageMessage.cmake
+D:/CMake/share/cmake-3.24/Modules/FindThreads.cmake
+D:/CMake/share/cmake-3.24/Modules/Internal/CheckSourceCompiles.cmake

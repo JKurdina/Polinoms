@@ -1,0 +1,6 @@
+C:/Users/kurdi/Desktop/Polinoms/Polinoms/sln/CMakeFiles/ALL_BUILD.dir
+C:/Users/kurdi/Desktop/Polinoms/Polinoms/sln/CMakeFiles/ZERO_CHECK.dir
+C:/Users/kurdi/Desktop/Polinoms/Polinoms/sln/MyLibrary/CMakeFiles/MyLibrary.dir
+C:/Users/kurdi/Desktop/Polinoms/Polinoms/sln/Polinoms/CMakeFiles/Polinoms.dir
+C:/Users/kurdi/Desktop/Polinoms/Polinoms/sln/gtest/CMakeFiles/gtest.dir
+C:/Users/kurdi/Desktop/Polinoms/Polinoms/sln/test/CMakeFiles/test.dir
