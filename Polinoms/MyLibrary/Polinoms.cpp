@@ -303,3 +303,52 @@ Polinom Polinom::operator*(const Polinom& pl) {
   }
   return resultPolinom;
 }
+
+bool Polinom::operator==(const Polinom& p) {
+  Link* tmp_right = p.start->next;
+  Link* tmp_left = start->next;
+
+
+  while (tmp_right != start && tmp_left != start) {
+    if (tmp_left->monom.coef == tmp_right->monom.coef &&
+      tmp_left->monom.getX() == tmp_right->monom.getX() &&
+      tmp_left->monom.getY() == tmp_right->monom.getY() &&
+      tmp_left->monom.getZ() == tmp_right->monom.getZ()) {
+      tmp_left = tmp_left->next;
+      tmp_right = tmp_right->next;
+    }
+    else return false;
+  }
+
+
+if (tmp_right == p.start && tmp_left != start)
+return false;
+else if (tmp_right != p.start && tmp_left == start)
+return false;
+return true;
+}
+
+bool Polinom::operator!=(const Polinom& p) {
+  Link* tmp_right = p.start->next;
+  Link* tmp_left = start->next;
+
+
+  while (tmp_right != start && tmp_left != start) {
+    if (tmp_left->monom.coef == tmp_right->monom.coef &&
+      tmp_left->monom.getX() == tmp_right->monom.getX() &&
+      tmp_left->monom.getY() == tmp_right->monom.getY() &&
+      tmp_left->monom.getZ() == tmp_right->monom.getZ()) {
+      tmp_left = tmp_left->next;
+      tmp_right = tmp_right->next;
+    }
+    else return true;
+  }
+
+
+  if (tmp_right == p.start && tmp_left != start)
+    return true;
+  else if (tmp_right != p.start && tmp_left == start)
+    return true;
+  return false;
+}
+

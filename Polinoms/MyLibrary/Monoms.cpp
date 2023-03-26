@@ -1,5 +1,11 @@
 #include "Monoms.h"
 
+Monom::Monom(const Monom& m) {
+  s = m.s;
+  s_minus = m.s_minus;
+  coef = m.coef;
+}
+
 istream& operator>>(istream& in, Monom& m)
 {
   string str;

@@ -22,6 +22,8 @@ public:
   Polinom operator+(const Polinom& p);
   Polinom operator-(const Polinom& p);
   Polinom operator*(const Polinom& p);
+  bool operator ==(const Polinom& p);
+  bool operator !=(const Polinom& p);
   void addLast(Monom monom);
   void add(Monom monom);
   void clean();

@@ -20,6 +20,7 @@ struct Monom {
   int getY() {return (s / p) % p + (s_minus / p) % p * (-1);}
   int getZ() {return (s / p / p) + (s_minus / p / p) * (-1);}
 
+  Monom(const Monom& m);
   friend istream& operator>>(istream& in, Monom& m);
   friend ostream& operator<<(ostream& out, Monom& m);
 };
