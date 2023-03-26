@@ -1,7 +1,2 @@
-﻿  Building Custom Rule C:/Users/kurdi/Desktop/Polinoms/Polinoms/MyLibrary/CMakeLists.txt
-  Monoms.cpp
-C:\Users\kurdi\Desktop\Polinoms\Polinoms\MyLibrary\Monoms.cpp(45,16): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
-C:\Users\kurdi\Desktop\Polinoms\Polinoms\MyLibrary\Monoms.cpp(63,14): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
-  Polinoms.cpp
-  Создание кода...
+﻿  Polinoms.cpp
   MyLibrary.vcxproj -> C:\Users\kurdi\Desktop\Polinoms\Polinoms\sln\MyLibrary\Debug\MyLibrary.lib
