@@ -155,6 +155,7 @@ Polinom Polinom::operator+(const Polinom& pl) {
   Polinom resultPolinom;
   Link* p_left = start->next;
   Link* p_right = pl.start->next;
+ 
 
   while ((p_left != start) && (p_right != pl.start)) {
     int new_s_left = p_left->monom.s - p_left->monom.s_minus;
@@ -301,7 +302,28 @@ Polinom Polinom::operator*(const Polinom& pl) {
     p_left = p_left->next;
 
   }
-  return resultPolinom;
+  Polinom resultPolinom2;
+  Link* tmp2 = resultPolinom.start->next;
+  
+  while (tmp2 != resultPolinom.start) {
+    double new_coef = tmp2->monom.coef;
+    Monom new_monom;
+    new_monom.s = tmp2->monom.s;
+    new_monom.s_minus = tmp2->monom.s_minus;
+    
+
+ 
+    while (tmp2->monom.s + tmp2->monom.s_minus == tmp2->next->monom.s + tmp2->next->monom.s_minus) {
+      new_coef += tmp2->next->monom.coef;
+      tmp2 = tmp2->next;
+
+    }
+    tmp2 = tmp2->next;
+    if (new_coef == 0.0) continue;
+    new_monom.coef = new_coef;
+    resultPolinom2.add(new_monom);
+  }
+  return resultPolinom2;
 }
 
 bool Polinom::operator==(const Polinom& p) {

@@ -45,6 +45,27 @@ int main() {
   cout << "Polinom 2: ";
   cout << p4 << endl;*/
 
+  Polinom p1;
+  string polinom1 = "";
+  istringstream p_in1(polinom1);
+  p_in1 >> p1;
+  cout << p1 << endl;
+
+  string polinom2 = "x^2y^3z^4+2x^5y^1z^1";
+  Polinom p2;
+  istringstream p_in2(polinom2);
+  p_in2 >> p2;
+
+  try {
+    Polinom p3 = p1 * p2;
+    cout << p3;
+  }
+  catch (string s) {
+    cout << s << endl;
+  }
+  
+
+
   
 
   return 0;
