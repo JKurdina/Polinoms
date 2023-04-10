@@ -173,7 +173,7 @@ TEST(Polinoms, can_multiply_polinoms)
   Polinom p3;
   p3 = p1 * p2;
 
-  string polinom4 = "-4x^10y^2z^2+2x^7y^4z^5-2x^7y^4z^5+x^4y^6z^8";
+  string polinom4 = "-4x^10y^2z^2+x^4y^6z^8";
   Polinom p4;
   istringstream p_in4(polinom4);
   p_in4 >> p4;
@@ -196,4 +196,19 @@ TEST(Polinoms, can_calculate_value_in_point)
   EXPECT_EQ(-28416, result);
 }
 
+TEST(Polinoms, can_multiply_polinoms_1)
+{
+  Polinom p1, p2, p3, p4;
+  string polinom1 = "2x^1y^2z^1-3x^0y^0z^0";
+  istringstream p_in1(polinom1);
+  p_in1 >> p1;
+  string polinom2 = "2x^1y^2z^1+3x^0y^0z^0";
+  istringstream p_in2(polinom2);
+  p_in2 >> p2;
+  string polinom3 = "-9+4x^2y^4z^2";
+  istringstream p_in3(polinom3);
+  p_in3 >> p3;
+  p4 = p1 * p2;
+  EXPECT_EQ(true, p3 == p4);
+}
 

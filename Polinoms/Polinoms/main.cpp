@@ -15,12 +15,12 @@ int main() {
   
 
 
-  /*string polinom1 = "";
+  string polinom1 = "x^2y^3z^4+2x^5y^1z^1";
   Polinom p1;
   istringstream p_in1(polinom1);
   p_in1 >> p1;
   cout << "Polinom1: ";
-  cout << p1 << endl;*/
+  cout << p1 << endl;
 
 
   /*string polinom2 = "";
@@ -31,21 +31,33 @@ int main() {
   /*cout << "Polinom2: ";
   cout << p2 << endl;*/
 
-  /*Polinom p3;
+  Polinom p2;
   ifstream file_1("Polinom.txt");
-  file_1 >> p3;
+  file_1 >> p2;
   cout << "Polinom from file: ";
-  cout << p3 << endl;*/
+  cout << p2 << endl;
 
- /* Polinom p4;
-  p4 = p1 - p;
+ Polinom p4;
+  p4 = p1 - p2;
   ofstream file_2("New_Polinom1.txt");
   file_2 << p4;
   file_2.close();
   cout << "Polinom 2: ";
-  cout << p4 << endl;*/
+  cout << p4 << endl;
 
+  /*Polinom p1;
+  string polinom1 = "";
+  istringstream p_in1(polinom1);
+  p_in1 >> p1;
+  cout << p1 << endl;
+
+  string polinom2 = "x^2y^3z^4+2x^5y^1z^1";
+  Polinom p2;
+  istringstream p_in2(polinom2);
+  p_in2 >> p2;
+  cout << p2;*/
   
+
 
   return 0;
 }

@@ -1,1 +1,7 @@
-﻿  Polinoms.vcxproj -> C:\Users\kurdi\Desktop\Polinoms\Polinoms\Debug\Polinoms.exe
+﻿  main.cpp
+C:\Users\kurdi\Desktop\Polinoms\Polinoms\Polinoms\main.cpp(2,10): fatal error C1083: Не удается открыть файл включение: Monoms.h: No such file or directory,
+  Monoms.cpp
+c1xx : fatal error C1083: Не удается открыть файл источник: Monoms.cpp: No such file or directory,
+  Polinoms.cpp
+c1xx : fatal error C1083: Не удается открыть файл источник: Polinoms.cpp: No such file or directory,
+  Создание кода...
